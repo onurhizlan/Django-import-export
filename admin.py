@@ -10,7 +10,7 @@ from core.modules.orders.views import GetPickleLoad
 class OrdersResource(resources.ModelResource):
     OrderCode = Field(attribute='OrderCode', column_name='Sipariş Kodu')
     full_name = Field(column_name='Ad - Soyad')
-    para_hesapla = Field(column_name='Toplam Ücret')
+    calculate_money = Field(column_name='Toplam Ücret')
     choice_list = Field(column_name='Ödeme Şekli')
     shipping_address = Field(column_name='Teslimat Adresi')
     ShippingCityCountry = Field(attribute='ShippingCityCountry', column_name='Teslimat Şehir / Ülke')
@@ -27,7 +27,7 @@ class OrdersResource(resources.ModelResource):
         model = Orders
         fields = ('',)
 
-    def dehydrate_para_hesapla(self, order):
+    def dehydrate_calculate_money(self, order):
         x = format(order.TotalPrice, '.2f')
         return x
 
